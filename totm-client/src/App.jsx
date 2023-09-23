@@ -1,34 +1,34 @@
+import axios from 'axios';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './styles/App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const initialState = { username: '', password: '', password_confirmation: '' };
+  const [state, setState] = useState(initialState);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:3000/users', state)
+      .then(res => {
+        console.log(res);
+        setState(initialState);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input type='text' name={'username'} placeholder={'Username'} defaultValue={state.username} onChange={handleChange} />
+      <input type='password' name={'password'} placeholder={'Password'} defaultValue={state.password} onChange={handleChange} />
+      <input type='password' name={'password_confirmation'} placeholder={'Confirm Password'} defaultValue={state.password_confirmation} onChange={handleChange} />
+      <button type='submit'>SUBMIT</button>
+    </form>
   );
 }
 
