@@ -8,7 +8,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/users', state)
+    axios.post('http://localhost:3000/users', { user: state })
       .then(res => {
         console.log(res);
         setState(initialState);
@@ -17,16 +17,14 @@ function App() {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type='text' name={'username'} placeholder={'Username'} defaultValue={state.username} onChange={handleChange} />
-      <input type='password' name={'password'} placeholder={'Password'} defaultValue={state.password} onChange={handleChange} />
-      <input type='password' name={'password_confirmation'} placeholder={'Confirm Password'} defaultValue={state.password_confirmation} onChange={handleChange} />
+      <input type='text' name={'username'} placeholder={'Enter Username'} value={state.username} onChange={handleChange} />
+      <input type='password' name={'password'} placeholder={'Enter Password'} value={state.password} onChange={handleChange} />
+      <input type='password' name={'password_confirmation'} placeholder={'Confirm Password'} value={state.password_confirmation} onChange={handleChange} />
       <button type='submit'>SUBMIT</button>
     </form>
   );
