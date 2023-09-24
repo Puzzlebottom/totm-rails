@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_24_150347) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_24_150611) do
   create_table "agents", force: :cascade do |t|
     t.string "name"
     t.integer "initiative"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "encounter_id"
+  end
+
+  create_table "agents_clusters", id: false, force: :cascade do |t|
+    t.integer "agent_id"
+    t.integer "cluster_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_id"], name: "index_agents_clusters_on_agent_id"
+    t.index ["cluster_id"], name: "index_agents_clusters_on_cluster_id"
   end
 
   create_table "clusters", force: :cascade do |t|
