@@ -1,4 +1,7 @@
 class Cluster < ApplicationRecord
   belongs_to :encounter, optional: true
-  has_and_belongs_to_many :agents
+  has_many :agents, through: :agents_clusters
+
+  validates :name, presence: true
+  validates :encounter_id, presence: true
 end

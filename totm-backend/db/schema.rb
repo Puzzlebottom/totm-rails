@@ -10,46 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_24_150611) do
-  create_table "agents", force: :cascade do |t|
-    t.string "name"
-    t.integer "initiative"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "encounter_id"
+ActiveRecord::Schema[7.0].define(version: 20_230_924_150_611) do
+  create_table 'agents', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'initiative'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'encounter_id'
   end
 
-  create_table "agents_clusters", id: false, force: :cascade do |t|
-    t.integer "agent_id"
-    t.integer "cluster_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agent_id"], name: "index_agents_clusters_on_agent_id"
-    t.index ["cluster_id"], name: "index_agents_clusters_on_cluster_id"
+  create_table 'agents_clusters', id: false, force: :cascade do |t|
+    t.integer 'agent_id'
+    t.integer 'cluster_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['agent_id'], name: 'index_agents_clusters_on_agent_id'
+    t.index ['cluster_id'], name: 'index_agents_clusters_on_cluster_id'
   end
 
-  create_table "clusters", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "encounter_id"
+  create_table 'clusters', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'encounter_id'
   end
 
-  create_table "encounters", force: :cascade do |t|
-    t.string "name"
-    t.integer "round", default: 0
-    t.integer "turn", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "description"
-    t.integer "user_id"
+  create_table 'encounters', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'round', default: 0
+    t.integer 'turn', default: 0
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'description'
+    t.integer 'user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
+  create_table 'users', force: :cascade do |t|
+    t.string 'username'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'password_digest'
   end
-
 end
