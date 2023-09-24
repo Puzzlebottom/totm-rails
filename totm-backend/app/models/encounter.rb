@@ -3,7 +3,7 @@ class Encounter < ApplicationRecord
   has_many :agents, dependent: :destroy
   has_many :clusters, dependent: :destroy
 
-  validates :title, presence: true
+  validates :name, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
 end
