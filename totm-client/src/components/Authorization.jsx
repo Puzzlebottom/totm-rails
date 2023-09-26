@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { useState } from 'react';
+
 const Authorization = () => {
   const initialState = { username: '', password: '', password_confirmation: '' };
   const [state, setState] = useState(initialState);
