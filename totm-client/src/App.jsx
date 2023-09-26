@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import './styles/App.css';
+import NavBar from './components/NavBar';
 
 function App() {
   const initialState = { username: '', password: '', password_confirmation: '' };
@@ -21,12 +21,15 @@ function App() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' name={'username'} placeholder={'Enter Username'} value={state.username} onChange={handleChange} />
-      <input type='password' name={'password'} placeholder={'Enter Password'} value={state.password} onChange={handleChange} />
-      <input type='password' name={'password_confirmation'} placeholder={'Confirm Password'} value={state.password_confirmation} onChange={handleChange} />
-      <button type='submit'>SUBMIT</button>
-    </form>
+    <>
+      <NavBar />
+      <form onSubmit={handleSubmit}>
+        <input type='text' name={'username'} placeholder={'Enter Username'} value={state.username} onChange={handleChange} />
+        <input type='password' name={'password'} placeholder={'Enter Password'} value={state.password} onChange={handleChange} />
+        <input type='password' name={'password_confirmation'} placeholder={'Confirm Password'} value={state.password_confirmation} onChange={handleChange} />
+        <button type='submit'>SUBMIT</button>
+      </form>
+    </>
   );
 }
 
